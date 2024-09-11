@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <h1>Ich bin die Home View</h1>
+  <h1>Ich bin ein Highscoreview</h1>
 </template>
 
 <script>
