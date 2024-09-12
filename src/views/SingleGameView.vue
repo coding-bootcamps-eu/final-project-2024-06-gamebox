@@ -1,5 +1,5 @@
 <template>
-  <NavBar class="navbar" />
+  <NavBar />
   <h1>Ich bin die SingleGameView</h1>
   <div class="currentGame"></div>
 </template>
@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 .currentGame {
-  background-color: blue;
+  background-color: rgb(255, 102, 0);
   border: black 5 rem;
   width: 100%;
   height: 100%;
