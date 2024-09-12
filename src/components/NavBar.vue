@@ -3,36 +3,39 @@
     <RouterLink to="/" class="nav-link">Home</RouterLink>
     <RouterLink to="/Highscore" class="nav-link">Highscore</RouterLink>
     <div class="nav-link">
-      <div v-if="loggedInUser">
-        <span>Welcome, {{ loggedInUser }}</span>
-        <button @click="logout">Logout</button>
+      <div v-if="store.isLoggedIn">
+        <span>Welcome, {{ store.currentUser.username }}</span>
+        <button @click="store.logout">Logout</button>
       </div>
       <div v-else>
-        <input v-model="username" placeholder="Enter username" />
-        <button @click="login">Login</button>
+        <input v-model="store.inputUser" placeholder="Enter username" />
+        <button @click="store.login">Login</button>
       </div>
-      <!-- <button class="nav-link">Login</button> -->
     </div>
   </nav>
 </template>
 
 <script>
+import { usersStore } from '@/stores/users.js'
+
 export default {
   data() {
     return {
-      loggedInUser: null,
-      username: ''
-    }
-  },
-  methods: {
-    login() {
-      if (this.username.trim()) {
-        this.loggedInUser = this.username
-        this.username = ''
-      }
-    },
-    logout() {
-      this.loggedInUser = null
+      store: usersStore()
+
+      //     loggedInUser: null,
+      //     username: ''
+      //   }
+      // },
+      // methods: {
+      //   login() {
+      //     if (this.username.trim()) {
+      //       this.loggedInUser = this.username
+      //       this.username = ''
+      //     }
+      //   },
+      //   logout() {
+      //     this.loggedInUser = null
     }
   }
 }

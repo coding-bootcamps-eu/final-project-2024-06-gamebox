@@ -12,8 +12,7 @@
   </body>
 </template>
 
-
-<script>
+<script scoped>
 import NavBar from '@/components/NavBar.vue'
 
 export default {
@@ -23,7 +22,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 body,
 html {
   display: flex;
@@ -35,7 +34,7 @@ html {
 }
 
 .container {
-  width: 1000%;
+  width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -65,10 +64,3 @@ html {
   border-radius: 10px;
 }
 </style>
-
- 
-
-
-
-
-
