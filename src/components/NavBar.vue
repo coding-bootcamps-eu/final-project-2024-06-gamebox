@@ -4,7 +4,8 @@
     <RouterLink to="/Highscore" class="nav-link">Highscore</RouterLink>
     <div class="nav-link">
       <div v-if="store.isLoggedIn">
-        <span>Welcome, {{ store.currentUser.username }}</span>
+        <span>Welcome, {{ store.currentUser.username }} </span>
+
         <button @click="store.logout">Logout</button>
       </div>
       <div v-else>
@@ -22,20 +23,6 @@ export default {
   data() {
     return {
       store: usersStore()
-
-      //     loggedInUser: null,
-      //     username: ''
-      //   }
-      // },
-      // methods: {
-      //   login() {
-      //     if (this.username.trim()) {
-      //       this.loggedInUser = this.username
-      //       this.username = ''
-      //     }
-      //   },
-      //   logout() {
-      //     this.loggedInUser = null
     }
   }
 }
@@ -60,5 +47,9 @@ nav {
 
 .nav-link:hover {
   background-color: #e0e0e0;
+}
+
+button {
+  margin-left: 1rem;
 }
 </style>
