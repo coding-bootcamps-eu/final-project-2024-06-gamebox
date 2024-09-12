@@ -1,4 +1,5 @@
 <template>
+  <NavBar />
   <body>
     <div class="container">
       <div class="flexbox-container">
@@ -11,7 +12,18 @@
   </body>
 </template>
 
-<style>
+
+<script>
+import NavBar from '@/components/NavBar.vue'
+
+export default {
+  components: {
+    NavBar
+  }
+}
+</script>
+
+<style scoped>
 body,
 html {
   display: flex;
@@ -53,3 +65,10 @@ html {
   border-radius: 10px;
 }
 </style>
+
+ 
+
+
+
+
+
