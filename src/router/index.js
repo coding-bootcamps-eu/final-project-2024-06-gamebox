@@ -3,6 +3,7 @@ import { usersStore } from '@/stores/users.js'
 import HomeView from '../views/HomeView.vue'
 import HighScoreView from '@/views/HighScoreView.vue'
 import SingleGameView from '@/views/SingleGameView.vue'
+import TestView from '@/views/TestView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       meta: {
         isLoggedIn: true
       }
+    },
+    {
+      path: '/Test',
+      name: 'Test',
+      component: TestView
     }
   ]
 })

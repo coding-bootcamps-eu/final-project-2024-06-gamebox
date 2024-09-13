@@ -3,21 +3,42 @@
   <body>
     <div class="container">
       <div class="flexbox-container">
-        <div class="flexbox">Spiel-1</div>
-        <div class="flexbox">Spiel-2</div>
-        <div class="flexbox">Spiel-3</div>
-        <div class="flexbox">Spiel-4</div>
+        <div class="flexbox">
+          <button @click="goToHome">TestView</button>
+        </div>
+        <div class="flexbox">
+          <button @click="onClick">Game-Two</button>
+        </div>
+        <div class="flexbox">
+          <button @click="onClick">Game-Three</button>
+        </div>
+        <div class="flexbox">
+          <button @click="onClick">Game-Four</button>
+        </div>
       </div>
     </div>
   </body>
 </template>
 
-<script scoped>
+<script>
 import NavBar from '@/components/NavBar.vue'
+import { useRouter } from 'vue-router'
 
 export default {
   components: {
     NavBar
+  },
+
+  setup() {
+    const router = useRouter()
+
+    const goToHome = () => {
+      router.push({ name: 'home' })
+    }
+
+    return {
+      goToHome
+    }
   }
 }
 </script>
@@ -29,7 +50,6 @@ html {
   justify-content: center;
   background-color: bisque;
   margin: 0;
-  padding: 0;
   height: 100%;
 }
 
