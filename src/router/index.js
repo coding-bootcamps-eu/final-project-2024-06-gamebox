@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { usersStore } from '@/stores/users.js'
 import HomeView from '../views/HomeView.vue'
 import HighScoreView from '@/views/HighScoreView.vue'
+import SingleGameView from '@/views/SingleGameView.vue'
 import TestView from '@/views/TestView.vue'
 
 const router = createRouter({
@@ -15,7 +17,19 @@ const router = createRouter({
     {
       path: '/highscore',
       name: 'highScore',
-      component: HighScoreView
+      component: HighScoreView,
+      meta: {
+        isLoggedIn: true
+      }
+    },
+
+    {
+      path: '/singleGame',
+      name: 'singleGame',
+      component: SingleGameView,
+      meta: {
+        isLoggedIn: true
+      }
     },
     {
       path: '/Test',
@@ -23,6 +37,14 @@ const router = createRouter({
       component: TestView
     }
   ]
+})
+
+router.beforeEach(function (to, from) {
+  if (to.meta.isLoggedIn) {
+    if (usersStore().isLoggedIn === false) {
+      return '/'
+    }
+  }
 })
 
 export default router
