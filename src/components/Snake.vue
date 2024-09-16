@@ -1,3 +1,3 @@
 <template>
-  <h1>Snakeygame</h1>
+  <h1>Snake</h1>
 </template>
