@@ -1,5 +1,5 @@
 <template>
-  <section class="container" :class="{ start: isStarting }">
+  <!-- <section class="container" :class="{ start: isStarting }">
     <div class="result_field">
       <div class="result_images">
         <span class="user_result">
@@ -23,10 +23,11 @@
         <p>{{ option.name }}</p>
       </span>
     </div>
-  </section>
+  </section> -->
+  <h1>rock paper scissor</h1>
 </template>
 
-<script>
+<!-- <script>
 import { ref, computed } from 'vue'
 
 export default {
@@ -87,7 +88,7 @@ export default {
     }
   }
 }
-</script>
+</script> -->
 <style scoped>
 * {
   margin: 0;

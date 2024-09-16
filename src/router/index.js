@@ -3,7 +3,6 @@ import { usersStore } from '@/stores/users.js'
 import HomeView from '../views/HomeView.vue'
 import HighScoreView from '@/views/HighScoreView.vue'
 import SingleGameView from '@/views/SingleGameView.vue'
-import TestView from '@/views/TestView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,16 +24,20 @@ const router = createRouter({
 
     {
       path: '/singleGame',
-      name: 'singleGame',
+      name: 'singleGame-overview',
       component: SingleGameView,
       meta: {
         isLoggedIn: true
       }
     },
+
     {
-      path: '/Test',
-      name: 'Test',
-      component: TestView
+      path: '/singleGame/:id',
+      name: 'singleGame',
+      component: SingleGameView,
+      meta: {
+        isLoggedIn: true
+      }
     }
   ]
 })
