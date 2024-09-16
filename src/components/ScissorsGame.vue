@@ -24,7 +24,7 @@
       </span>
     </div>
   </section> -->
-  <p>rock paper scissor</p>
+  <h1>rock paper scissor</h1>
 </template>
 
 <!-- <script>

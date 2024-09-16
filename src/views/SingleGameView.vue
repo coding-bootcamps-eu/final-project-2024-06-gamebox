@@ -17,11 +17,9 @@
 
     {{ gameId }}
 
-    <!-- <component v-if="gameId === '1'" :is="gamesStore.getGameById(1)?.gamename"></component>
+    <component v-if="gameId === '1'" :is="gamesStore.getGameById(1)?.gamename"></component>
     <component v-if="gameId === '2'" :is="gamesStore.getGameById(2)?.gamename"></component>
-    <component v-if="gameId === '3'" :is="gamesStore.getGameById(3)?.gamename"></component> -->
-
-    <component v-if="gameId === true" :is="dynamicGameComponent"></component>
+    <component v-if="gameId === '3'" :is="gamesStore.getGameById(3)?.gamename"></component>
   </div>
 </template>
 
@@ -48,12 +46,12 @@ export default {
   computed: {
     gameId() {
       return this.$route.params.id
-    },
-
-    dynamicGameComponent() {
-      const game = this.gamesStore.getGameById(this.gameId)
-      return game ? game.gamename : null
     }
+
+    // dynamicGameComponent() {
+    //   const game = this.gamesStore.getGameById(this.gameId)
+    //   return game ? game.gamename : null
+    // }
 
     // gameComponent() {
     //   return this.gamesStore.getGameById(this.gameId)?.gamename
