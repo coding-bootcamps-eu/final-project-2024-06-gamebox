@@ -25,6 +25,15 @@ const router = createRouter({
 
     {
       path: '/singleGame',
+      name: 'singleGame-overview',
+      component: SingleGameView,
+      meta: {
+        isLoggedIn: true
+      }
+    },
+
+    {
+      path: '/singleGame/:id',
       name: 'singleGame',
       component: SingleGameView,
       meta: {

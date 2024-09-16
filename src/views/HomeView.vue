@@ -3,17 +3,26 @@
   <body>
     <div class="container">
       <div class="flexbox-container">
-        <div class="flexbox">
-          <button @click="goToHome">TestView</button>
+        <!-- <div class="flexbox">
+          <button @click="$router.push('/singleGame/1')">
+            {{ gamesStore.getGameById(1)?.gamename }}
+          </button>
         </div>
         <div class="flexbox">
-          <button @click="onClick">Game-Two</button>
+          <button @click="$router.push('/singleGame/2')">
+            {{ gamesStore.getGameById(2)?.gamename }}
+          </button>
         </div>
         <div class="flexbox">
           <button @click="onClick">Game-Three</button>
         </div>
         <div class="flexbox">
           <button @click="onClick">Game-Four</button>
+        </div> -->
+        <div class="flexbox" v-for="item in gamesStore.games" :key="item.id">
+          <button @click="$router.push('/singleGame/' + item.id)">
+            {{ gamesStore.getGameById(item.id)?.gamename }}
+          </button>
         </div>
       </div>
     </div>
@@ -22,7 +31,7 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import { useRouter } from 'vue-router'
+import { gamesStore } from '@/stores/games.js'
 
 export default {
   components: {
@@ -30,16 +39,21 @@ export default {
   },
 
   setup() {
-    const router = useRouter()
-
-    const goToHome = () => {
-      router.push({ name: 'home' })
-    }
-
-    return {
-      goToHome
-    }
+    const store = gamesStore()
+    return { gamesStore: store }
   }
+
+  // setup() {
+  //   const router = useRouter()
+
+  //   const goToHome = () => {
+  //     router.push({ name: 'home' })
+  //   }
+
+  //   return {
+  //     goToHome
+  //   }
+  // }
 }
 </script>
 

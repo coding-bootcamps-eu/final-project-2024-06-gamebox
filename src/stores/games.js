@@ -8,18 +8,18 @@ export const gamesStore = defineStore('games', {
       games: [
         {
           id: 1,
-          gamename: 'hangman',
+          gamename: 'Hangman',
           gamepath: 'nix'
         },
         {
           id: 2,
-          gamename: 'rock paper siccors',
+          gamename: 'ScissorsGame',
           gamepath: 'nix'
         },
         {
           id: 3,
-          gamename: 'snake',
-          gamepath: '<Snake/>'
+          gamename: 'Snake',
+          gamepath: 'nix'
         }
       ]
     }
