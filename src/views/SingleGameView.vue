@@ -1,25 +1,18 @@
 <template>
   <NavBar />
-  <h1>Ich bin die SingleGameView</h1>
-  <div class="currentGame">
-    <!-- <Snake />
-    <div>
-      <p>Total games: {{ gamesStore.totalGames }}</p>
-      <p>All game names: {{ gamesStore.gameNames.join(', ') }}</p>
+  <div class="container">
+    <div class="currentGame">
+      <Snake />
+      <div>
+        <p>Total games: {{ gamesStore.totalGames }}</p>
+        <p>All game names: {{ gamesStore.gameNames.join(', ') }}</p>
 
-      <p>Game with id : {{ gamesStore.getGameById(3)?.gamename }}</p>
-      <p>Gamepath with id : {{ gamesStore.getGameById(3)?.gamepath }}</p>
-      {{ gamesStore.getGameById(1)?.gamepath }}
-    </div> -->
-    <!-- {{ gameId }}
-    {{ gamesStore.getGameById(1)?.gamename }}
-    {{ gameComponent }} -->
-
-    {{ gameId }}
-
-    <component :is="gamesStore.getGameById(gameId)?.gamename"></component>
-
-    <!-- <component :is="gamesStore.getGameById(gameId)?.gamename"></component> -->
+        <p>Game with id : {{ gamesStore.getGameById(3)?.gamename }}</p>
+        <p>Gamepath with id : {{ gamesStore.getGameById(3)?.gamepath }}</p>
+        {{ gamesStore.getGameById(3)?.gamepath }}
+      </div>
+      <component :is="gamesStore.getGameById(1)?.gamename"></component>
+    </div>
   </div>
 </template>
 
@@ -63,11 +56,34 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .currentGame {
-  background-color: rgb(255, 102, 0);
-  border: black 5 rem;
-  width: 100%;
+  background-color: rgb(255, 174, 0);
+  border: 5px solid black; /* Corrected border property */
+  width: 110vh;
   height: 100%;
+  border-radius: 0rem 0rem 2rem 0rem;
+}
+
+body,
+html {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(11, 99, 231);
+  margin: 0;
+  height: 100%;
+}
+
+.container {
+  border: 1px solid black; /* width, style, color */
+  border-radius: 0 0 2rem 2rem;
+  width: 100%;
+  height: 90%;
+  background-color: rgb(209, 204, 204);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
