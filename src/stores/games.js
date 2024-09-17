@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import router from '@/router'
 
 export const gamesStore = defineStore('games', {
   //data()
