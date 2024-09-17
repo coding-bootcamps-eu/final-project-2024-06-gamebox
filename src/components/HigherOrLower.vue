@@ -1,6 +1,6 @@
 <template>
-  <h1>{{ gameState }}</h1>
-  <button @click="resetGame">new Game</button>
+  <h2>{{ gameState }}</h2>
+
   <div class="game">
     <div class="column">
       <div class="your-roll">{{ myDiceRoll }}</div>
@@ -18,12 +18,13 @@
       <p>your Opponents roll</p>
     </div>
   </div>
-  <p>Your Score: {{ yourScore }}</p>
-  <p>
-    <strong>
-      {{ result }}
-    </strong>
-  </p>
+  <div class="info-bar-wrapper">
+    <p class="info-bar">
+      <strong> Result: {{ result }} </strong>
+    </p>
+    <p class="info-bar">Your Score: {{ yourScore }}</p>
+    <button class="info-bar" @click="resetGame">new Game</button>
+  </div>
 </template>
 
 <script>
@@ -34,7 +35,7 @@ export default {
       myDiceRoll: '?',
       enemyDiceRoll: '?',
       selection: '?',
-      gameState: 'ready',
+      gameState: 'roll your dice!',
       disableBtnYourDice: false,
       disableHigher: true,
       disableLower: true
@@ -73,14 +74,9 @@ export default {
       }
     },
 
-    // score() {
-    //   if (this.gameState === 'You win!') {
-    //     this.yourScore += 1
-    //   }
-    // },
     handleClickLower() {
       this.selection = '<'
-      //   this.gameState = this.result
+
       this.toggleBtnHigher()
       this.toggleBtnLower()
       this.enemyDiceRoll = this.rollDice()
@@ -88,7 +84,7 @@ export default {
     },
     handleClickHigher() {
       this.selection = '>'
-      //   this.gameState = this.result
+
       this.toggleBtnHigher()
       this.toggleBtnLower()
       this.enemyDiceRoll = this.rollDice()
@@ -99,7 +95,7 @@ export default {
       this.myDiceRoll = this.rollDice()
 
       this.gameState = 'choose higher, or lower!'
-      //   this.disableBtnYourDice = true
+
       this.toggleBtnYourDice()
       this.toggleBtnHigher()
       this.toggleBtnLower()
@@ -110,10 +106,12 @@ export default {
     resetGame() {
       this.myDiceRoll = 0
       this.enemyDiceRoll = 0
-      this.gameState = 'ready'
-      //   this.result = 'New Game'
+      this.gameState = 'roll your dice!'
+      this.myDiceRoll = '?'
+      this.enemyDiceRoll = '?'
+
       this.selection = '?'
-      //   this.disableBtnYourDice = false
+
       this.disableBtnYourDice = false
       this.disableHigher = true
       this.disableLower = true
@@ -136,10 +134,25 @@ export default {
   display: flex;
   flex-direction: row;
   width: 100%;
+  background-color: rgb(193, 172, 118);
+  margin-top: 1rem;
 }
 
 .column {
   display: flex;
+  flex-direction: column;
+  width: 33%;
+  text-align: center;
+}
+
+.info-bar-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  background-color: darkgoldenrod;
+}
+
+.info-bar {
   flex-direction: column;
   width: 33%;
   text-align: center;
