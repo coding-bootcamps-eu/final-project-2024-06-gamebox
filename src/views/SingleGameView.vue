@@ -1,25 +1,7 @@
 <template>
   <NavBar />
-  <h1>Ich bin die SingleGameView</h1>
   <div class="currentGame">
-    <!-- <Snake />
-    <div>
-      <p>Total games: {{ gamesStore.totalGames }}</p>
-      <p>All game names: {{ gamesStore.gameNames.join(', ') }}</p>
-
-      <p>Game with id : {{ gamesStore.getGameById(3)?.gamename }}</p>
-      <p>Gamepath with id : {{ gamesStore.getGameById(3)?.gamepath }}</p>
-      {{ gamesStore.getGameById(1)?.gamepath }}
-    </div> -->
-    <!-- {{ gameId }}
-    {{ gamesStore.getGameById(1)?.gamename }}
-    {{ gameComponent }} -->
-
-    {{ gameId }}
-
     <component :is="gamesStore.getGameById(gameId)?.gamename"></component>
-
-    <!-- <component :is="gamesStore.getGameById(gameId)?.gamename"></component> -->
   </div>
 </template>
 
@@ -47,18 +29,6 @@ export default {
     gameId() {
       return Number(this.$route.params.id)
     }
-
-    // dynamicGameComponent() {
-    //   const game = this.gamesStore.getGameById(this.gameId)
-    //   return game ? game.gamename : null
-    // }
-
-    // gameComponent() {
-    //   return this.gamesStore.getGameById(this.gameId)?.gamename
-    // },
-    // isGameeLoaded() {
-    //   return !!this.gameComponent
-    // }
   }
 }
 </script>
