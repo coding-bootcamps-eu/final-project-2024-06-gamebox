@@ -1,12 +1,13 @@
 <template>
   <NavBar />
   <div class="currentGame">
-    <component :is="gamesStore.getGameById(gameId)?.gamename"></component>
+    <component :is="gamesStore.getGameById(gameId)?.gamepath"></component>
   </div>
 </template>
 
 <script>
 import Hangman from '@/components/Hangman.vue'
+import HigherOrLower from '@/components/HigherOrLower.vue'
 import NavBar from '@/components/NavBar.vue'
 import ScissorsGame from '@/components/ScissorsGame.vue'
 import Snake from '@/components/Snake.vue'
@@ -17,7 +18,8 @@ export default {
     NavBar,
     Snake,
     Hangman,
-    ScissorsGame
+    ScissorsGame,
+    HigherOrLower
   },
 
   setup() {
