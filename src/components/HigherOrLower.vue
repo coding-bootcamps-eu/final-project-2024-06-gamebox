@@ -1,5 +1,6 @@
 <template>
   <h1>{{ gameState }}</h1>
+  <button @click="resetGame">new Game</button>
   <div class="game">
     <div class="column">
       <div class="your-roll">{{ myDiceRoll }}</div>
@@ -18,7 +19,11 @@
     </div>
   </div>
   <p>Your Score: {{ yourScore }}</p>
-  <p>{{ result }}</p>
+  <p>
+    <strong>
+      {{ result }}
+    </strong>
+  </p>
 </template>
 
 <script>
@@ -53,6 +58,21 @@ export default {
     scorePlus() {
       this.yourScore += 1
     },
+    scoreMinus() {
+      if (this.yourScore > 0) {
+        this.yourScore -= 1
+      }
+    },
+
+    calcScore() {
+      if (this.result === 'You win!') {
+        this.scorePlus()
+      }
+      if (this.result === 'You lose!') {
+        this.scoreMinus()
+      }
+    },
+
     // score() {
     //   if (this.gameState === 'You win!') {
     //     this.yourScore += 1
@@ -64,9 +84,7 @@ export default {
       this.toggleBtnHigher()
       this.toggleBtnLower()
       this.enemyDiceRoll = this.rollDice()
-      if (this.result === 'You win!') {
-        this.scorePlus()
-      }
+      this.calcScore()
     },
     handleClickHigher() {
       this.selection = '>'
@@ -74,9 +92,7 @@ export default {
       this.toggleBtnHigher()
       this.toggleBtnLower()
       this.enemyDiceRoll = this.rollDice()
-      if (this.result === 'You win!') {
-        this.scorePlus()
-      }
+      this.calcScore()
     },
 
     handleClickMyDiceRoll() {
@@ -95,8 +111,12 @@ export default {
       this.myDiceRoll = 0
       this.enemyDiceRoll = 0
       this.gameState = 'ready'
+      //   this.result = 'New Game'
+      this.selection = '?'
       //   this.disableBtnYourDice = false
-      this.toggleBtnYourDice()
+      this.disableBtnYourDice = false
+      this.disableHigher = true
+      this.disableLower = true
     },
     toggleBtnYourDice() {
       return (this.disableBtnYourDice = !this.disableBtnYourDice)
