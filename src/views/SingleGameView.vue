@@ -1,15 +1,10 @@
 <template>
   <NavBar />
-
   <div class="container">
- 
-   
-
-  <div class="currentGame">
-    <component :is="gamesStore.getGameById(gameId)?.gamepath"></component>
-
+    <div class="currentGame">
+      <component :is="gamesStore.getGameById(gameId)?.gamepath"></component>
+    </div>
   </div>
-   </div>
 </template>
 
 <script>
