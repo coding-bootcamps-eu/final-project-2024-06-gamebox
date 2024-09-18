@@ -1,23 +1,20 @@
 <template>
   <NavBar />
-  <div class="container">
-    <div class="currentGame">
-      <Snake />
-      <div>
-        <p>Total games: {{ gamesStore.totalGames }}</p>
-        <p>All game names: {{ gamesStore.gameNames.join(', ') }}</p>
 
-        <p>Game with id : {{ gamesStore.getGameById(3)?.gamename }}</p>
-        <p>Gamepath with id : {{ gamesStore.getGameById(3)?.gamepath }}</p>
-        {{ gamesStore.getGameById(3)?.gamepath }}
-      </div>
-      <component :is="gamesStore.getGameById(1)?.gamename"></component>
-    </div>
+  <div class="container">
+ 
+   
+
+  <div class="currentGame">
+    <component :is="gamesStore.getGameById(gameId)?.gamepath"></component>
+
   </div>
+   </div>
 </template>
 
 <script>
 import Hangman from '@/components/Hangman.vue'
+import HigherOrLower from '@/components/HigherOrLower.vue'
 import NavBar from '@/components/NavBar.vue'
 import ScissorsGame from '@/components/ScissorsGame.vue'
 import Snake from '@/components/Snake.vue'
@@ -28,7 +25,8 @@ export default {
     NavBar,
     Snake,
     Hangman,
-    ScissorsGame
+    ScissorsGame,
+    HigherOrLower
   },
 
   setup() {
@@ -40,18 +38,6 @@ export default {
     gameId() {
       return Number(this.$route.params.id)
     }
-
-    // dynamicGameComponent() {
-    //   const game = this.gamesStore.getGameById(this.gameId)
-    //   return game ? game.gamename : null
-    // }
-
-    // gameComponent() {
-    //   return this.gamesStore.getGameById(this.gameId)?.gamename
-    // },
-    // isGameeLoaded() {
-    //   return !!this.gameComponent
-    // }
   }
 }
 </script>

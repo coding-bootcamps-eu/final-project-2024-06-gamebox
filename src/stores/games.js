@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import router from '@/router'
 
 export const gamesStore = defineStore('games', {
   //data()
@@ -8,18 +7,23 @@ export const gamesStore = defineStore('games', {
       games: [
         {
           id: 1,
-          gamename: 'Hangman',
-          gamepath: 'nix'
+          gamename: 'HANGMAN',
+          gamepath: 'Hangman'
         },
         {
           id: 2,
-          gamename: 'ScissorsGame',
-          gamepath: 'nix'
+          gamename: 'ROCK PAPER SCISSORS',
+          gamepath: 'ScissorsGame'
         },
         {
           id: 3,
-          gamename: 'Snake',
-          gamepath: 'nix'
+          gamename: 'SNAKE',
+          gamepath: 'Snake'
+        },
+        {
+          id: 4,
+          gamename: 'HIGHER OR LOWER',
+          gamepath: 'HigherOrLower'
         }
       ]
     }
