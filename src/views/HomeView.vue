@@ -2,28 +2,47 @@
   <NavBar />
   <body>
     <div class="container">
-      <div class="flexbox-container">
-        <!-- <div class="flexbox">
-          <button @click="$router.push('/singleGame/1')">
-            {{ gamesStore.getGameById(1)?.gamename }}
-          </button>
-        </div>
-        <div class="flexbox">
-          <button @click="$router.push('/singleGame/2')">
-            {{ gamesStore.getGameById(2)?.gamename }}
-          </button>
-        </div>
-        <div class="flexbox">
-          <button @click="onClick">Game-Three</button>
-        </div>
-        <div class="flexbox">
-          <button @click="onClick">Game-Four</button>
-        </div> -->
-        <div class="flexbox" v-for="item in gamesStore.games" :key="item.id">
-          <button @click="$router.push('/singleGame/' + item.id)">
-            {{ gamesStore.getGameById(item.id)?.gamename }}
-          </button>
-        </div>
+      <div class="flexbox">
+        <button @click="onClick" class="image-button">
+          <img
+            src="https://images.deepai.org/art-image/af4416e5be394d568ca6cc2bd502c9ba/massive-gallows-surrounded-by-smaller-gallows.jpg"
+            alt="Play Game"
+            class="custom-image-1"
+          />
+          <span class="button-text">Play</span>
+        </button>
+      </div>
+
+      <div class="flexbox">
+        <button @click="onClick" class="image-button">
+          <img
+            src="https://images.deepai.org/art-image/419435d801a64027b319d46ab46e11a4/dice-cc1697-thumb.jpg"
+            alt="Play Game"
+            class="custom-image-2"
+          />
+          <span class="button-text">Play</span>
+        </button>
+      </div>
+
+      <div class="flexbox">
+        <button @click="onClick" class="image-button">
+          <img
+            src="https://images.deepai.org/art-image/7a09e5a49c244b068888dd2f0e6c15ef/rock-paper-scissor-7d0ac5.jpg"
+            alt="Play Game"
+            class="custom-image-3"
+          />
+          <span class="button-text">Play</span>
+        </button>
+      </div>
+      <div class="flexbox">
+        <button @click="onClick" class="image-button">
+          <img
+            src="https://images.deepai.org/art-image/bde592a507f649e5b64593088d2374b2/shake-snake-thumb.jpg"
+            alt="Play Game"
+            class="custom-image-4"
+          />
+          <span class="button-text">Play</span>
+        </button>
       </div>
     </div>
   </body>
@@ -62,14 +81,18 @@ body,
 html {
   display: flex;
   justify-content: center;
-  background-color: bisque;
+  background-color: rgb(236, 240, 246);
   margin: 0;
   height: 100%;
 }
 
 .container {
+  padding: 1rem;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 0 0 2rem 2rem;
   width: 100%;
   height: 100%;
+  background-color: rgb(243, 238, 234);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -77,19 +100,54 @@ html {
   align-items: center;
 }
 
-.flexbox-container {
+/* .flexbox-container {
+  padding: 1%;
+  background-color: rgb(255, 255, 255);
+  border: 2px solid black;
+  border-radius: 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  max-width: 80%;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+} */
+.custom-image-1 {
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /* width: 15vh; */
+  height: 17vh;
+  object-fit: cover;
+  /* margin-right: 9vh; */
+}
+.custom-image-2 {
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /* width: 15vh; */
+  height: 17vh;
+  object-fit: cover;
+  /* margin-right: 9vh; */
+}
+
+.custom-image-3 {
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /* width: 15vh; */
+  height: 17vh;
+  object-fit: cover;
+  /* margin-right: 9vh; */
+}
+.custom-image-4 {
+  border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
+  /* width: 15vh; */
+  height: 17vh;
+  object-fit: cover;
+  /* margin-right: 9vh; */
 }
 
 .flexbox {
-  width: 400px;
+  border: 2px solid black;
+  width: 30%;
   height: 200px;
-  background-color: gray;
+  background-color: rgb(255, 254, 252);
   display: flex;
   justify-content: center;
   align-items: center;
