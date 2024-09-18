@@ -1,181 +1,345 @@
 <template>
-  <!-- <section class="container" :class="{ start: isStarting }">
-    <div class="result_field">
-      <div class="result_images">
-        <span class="user_result">
-          <img :src="userResult" alt="User's choice" />
-        </span>
-        <span class="cpu_result">
-          <img :src="cpuResult" alt="CPU's choice" />
-        </span>
-      </div>
-      <div class="result">{{ resultText }}</div>
-    </div>
-    <div class="option_images">
-      <span
-        v-for="(option, index) in options"
-        :key="option.name"
-        class="option_image"
-        :class="{ active: activeIndex === index }"
-        @click="playGame(index)"
-      >
-        <img :src="option.image" :alt="option.name" />
-        <p>{{ option.name }}</p>
-      </span>
-    </div>
-  </section> -->
-  <h1>rock paper scissor</h1>
+  <h1>test</h1>
 </template>
 
-<!-- <script>
-import { ref, computed } from 'vue'
+<!-- <template>
+  <div class="game">
+    <h1>Rock Paper Scissors</h1>
+    <div class="btn-restart" v-if="finished">
+      <h3>{{ this.message }}</h3>
+      <button @click="restart">Again <i class="fas fa-sync-alt"></i></button>
+    </div>
+    <div class="scor-table">
+      <div id="me" class="user">Me</div>
+      <div id="you" class="user">You</div>
+      <span id="me-score">{{ meScore }}</span
+      >:<span id="you-score">{{ youScore }}</span>
+    </div>
+    <div class="info" v-if="!finished">
+      <h2>{{ result }}</h2>
+    </div>
+    <div class="image-buttons" v-if="!finished">
+      <div id="Rock" class="select" @click="onChoice">
+        <img src="../assets/images/rock.jpg" alt="Rock" />
+      </div>
+      <div id="Paper" class="select" @click="onChoice">
+        <img src="../assets/images/paper.jpg" alt="Paper" />
+      </div>
+      <div id="Scissors" class="select" @click="onChoice">
+        <img src="../assets/images/scissors.jpg" alt="Scissors" />
+      </div>
+    </div>
+  </div>
+</template>
 
+<script>
 export default {
-  setup() {
-    const options = [
-      { name: 'Rock', image: 'images/rock.png', value: 'R' },
-      { name: 'Paper', image: 'images/paper.png', value: 'P' },
-      { name: 'Scissors', image: 'images/scissors.png', value: 'S' }
-    ]
-
-    const userResult = ref('images/rock')
-    const cpuResult = ref('images/rock.png')
-    const resultText = ref("Let's Play!!")
-    const activeIndex = ref(-1)
-    const isStarting = ref(false)
-
-    const outcomes = {
-      RR: 'Draw',
-      RP: 'Cpu',
-      RS: 'User',
-      PP: 'Draw',
-      PR: 'User',
-      PS: 'Cpu',
-      SS: 'Draw',
-      SR: 'Cpu',
-      SP: 'User'
-    }
-
-    const playGame = (index) => {
-      activeIndex.value = index
-      userResult.value = cpuResult.value = 'images/rock.png'
-      resultText.value = 'Wait...'
-      isStarting.value = true
-
-      setTimeout(() => {
-        isStarting.value = false
-        userResult.value = options[index].image
-
-        const randomIndex = Math.floor(Math.random() * 3)
-        cpuResult.value = options[randomIndex].image
-
-        const userValue = options[index].value
-        const cpuValue = options[randomIndex].value
-        const outcome = outcomes[userValue + cpuValue]
-
-        resultText.value = userValue === cpuValue ? 'Match Draw' : `${outcome} Won!!`
-      }, 2500)
-    }
-
+  data() {
     return {
-      options,
-      userResult,
-      cpuResult,
-      resultText,
-      activeIndex,
-      isStarting,
-      playGame
+      choices: ['Rock', 'Paper', 'Scissors'],
+      meChoise: '',
+      youChoise: '',
+      meScore: 0,
+      youScore: 0,
+      result: '',
+      finished: false,
+      message: ''
+    }
+  },
+  watch: {
+    meScore: function () {
+      if (this.meScore == 3) {
+        this.finished = true
+        this.message = 'You Win Dude 🤘'
+      }
+    },
+    youScore: function () {
+      if (this.youScore == 3) {
+        this.finished = true
+        this.message = ' You Lost Dude 😭'
+      }
+    }
+  },
+  methods: {
+    onChoice(e) {
+      this.youChoise = this.choices[Math.floor(Math.random() * this.choices.length)]
+      this.meChoise = e.currentTarget.id
+      this.game()
+    },
+    game() {
+      switch (this.meChoise + this.youChoise) {
+        case 'RockScissors':
+        case 'PaperRock':
+        case 'ScissorsPaper':
+          this.meScore++
+          this.result = this.meChoise + ' beats ' + this.youChoise
+          break
+        case 'RockPaper':
+        case 'PaperScissors':
+        case 'ScissorsRock':
+          this.youScore++
+          this.result = this.youChoise + ' beats ' + this.meChoise
+          break
+        case 'RockRock':
+        case 'PaperPaper':
+        case 'ScissorsScissors':
+          this.result = 'Draw Dude 😜'
+          break
+      }
+    },
+    restart() {
+      Object.assign(this.$data, this.$options.data())
     }
   }
 }
-</script> -->
-<style scoped>
+</script>
+
+<style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@mixin user-info {
+  position: absolute;
+  font-size: 1.5rem;
+  width: 70px;
+  height: 30px;
+  top: 25px;
+  letter-spacing: 0;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
-body {
-  height: 100vh;
+.game {
   display: flex;
-  align-items: center;
+  flex-flow: column;
   justify-content: center;
-  background: #f6f7fb;
-}
-::selection {
-  color: #fff;
-  background-color: #7d2ae8;
-}
-container {
-  padding: 2rem 7rem;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-.result_images {
-  display: flex;
-  column-gap: 7rem;
-}
-.container.start .user_result {
-  transform-origin: right;
-  animation: cpuShake 0.7s ease infinite;
-}
-@keyframes cpuShake {
-  50% {
-    transform: rotate(-10deg);
+  align-items: center;
+  padding: 20px 50px;
+
+  & h1 {
+    text-align: center;
+    font-size: 5rem;
+    letter-spacing: 10px;
+    font-family: 'Luckiest Guy', cursive;
+    text-shadow: 1px 1px 10px black;
+    //animation: fadeBottom 1000ms cubic-bezier(0.22, 0.32, 0, 1.54) 400ms;
+  }
+  & h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 100px 0px 50px;
+  }
+
+  & .btn-restart {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    margin-top: 30px;
+
+    & h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      letter-spacing: 5px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    & button {
+      width: 150px;
+      height: 35px;
+      outline: none;
+      border: 0;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      margin: auto;
+      border-radius: 15px;
+      background-color: slateblue;
+    }
+  }
+  /* Score Table */
+  & .scor-table {
+    border: 3px solid white;
+    width: 250px;
+    margin: 40px auto;
+    color: white;
+    letter-spacing: 5px;
+    font-size: 46px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 15px 20px;
+    font-family: sans-serif;
+    position: relative;
+    //animation: fadeInToRight 1000ms cubic-bezier(0.22, 0.32, 0, 1.54) 400ms;
+
+    & .user {
+      padding: 2px 10px;
+      background-color: slateblue;
+    }
+
+    & #me {
+      @include user-info;
+      left: -35px;
+    }
+
+    & #you {
+      @include user-info;
+      left: 210px;
+    }
+  }
+
+  & .info {
+    margin-top: -80px;
+  }
+  /* Image Buttons */
+
+  & .image-buttons {
+    animation: fadeInToLeft 1000ms cubic-bezier(0.22, 0.32, 0, 1.54) 400ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .select {
+      display: inline-block;
+      height: auto;
+      border-radius: 100%;
+
+      & img {
+        width: 100px;
+        height: auto;
+        margin: 20px;
+        border-radius: 50%;
+        transform: translate(0, -1px);
+        transition: 0.2s;
+      }
+
+      &:hover {
+        cursor: pointer;
+        transition: 0.2s;
+        transform: translate(0, 2px);
+      }
+    }
   }
 }
-.result_image img {
-  width: 100px;
+@keyframes fadeInToRight {
+  from {
+    opacity: 0;
+    transform: translateX(+200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
-.user-result img {
-  transform: rotate(90deg);
+@keyframes fadeInToLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
 }
-.cpu_result img {
-  transform: rotate(-90deg) rotateY(180deg);
-}
-.result {
-  text-align: center;
-  font-size: 2rem;
-  color: #7d2ae8;
-  margin-top: 1.5rem;
+@keyframes fadeBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
 
-.option_image img {
-  width: 50px;
-}
+@media screen and (max-width: 450px) {
+  @mixin user-info {
+    font-size: 1.2rem;
+    height: 25px;
+    top: 15px;
+  }
+  .game {
+    & h1 {
+      font-size: 2rem;
+      margin-top: -15px;
+    }
+    & h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin: 100px 0px 50px;
+    }
 
-.option images {
-  display: flex;
-  align-items: center;
-  margin-top: 2.5rem;
-  justify-content: space-between;
+    & .btn-restart {
+      margin-top: 20px;
+      & h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    & .scor-table {
+      width: 250px;
+      font-size: 1.5rem;
+
+      & #me {
+        @include user-info;
+      }
+
+      & #you {
+        @include user-info;
+        left: 210px;
+      }
+    }
+
+    & .info {
+      margin-top: -100px;
+    }
+    /* Image Buttons */
+
+    & .image-buttons {
+      bottom: 200px;
+
+      & .select {
+        display: inline-block;
+        height: auto;
+        border-radius: 100%;
+
+        & img {
+          width: 100px;
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
 }
-.container.start .option_images {
-  pointer-events: none;
+@media screen and (max-width: 375px) {
+  .game {
+    & .scor-table {
+      width: 150px;
+      & #me {
+        left: -56px;
+      }
+
+      & #you {
+        left: 130px;
+      }
+    }
+    & h2 {
+      font-size: 1.2rem;
+    }
+    & .btn-restart h3 {
+      font-size: 1rem;
+    }
+    & .image-buttons {
+      bottom: 60px;
+      & .select img {
+        width: 80px;
+      }
+    }
+  }
 }
-.option_image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.option_image:hover {
-  opacity: 1;
-}
-.option_image.avtive {
-  opacity: 1;
-}
-.options_image img {
-  pointer-events: none;
-}
-.option_image p {
-  color: #7d2ae8;
-  font-size: 1.235rem;
-  margin-top: 1rem;
-  pointer-events: none;
-}
-</style>
+</style> -->

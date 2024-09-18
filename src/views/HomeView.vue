@@ -37,7 +37,7 @@
       <div class="flexbox">
         <button @click="onClick" class="image-button">
           <img
-            src="https://images.deepai.org/art-image/7c8ecc74b29f4c5cad8f7cb7cff84894/snake-with-snakes-in-hair.jpg"
+            src="https://images.deepai.org/art-image/bde592a507f649e5b64593088d2374b2/shake-snake-thumb.jpg"
             alt="Play Game"
             class="custom-image-4"
           />
@@ -87,6 +87,7 @@ html {
 }
 
 .container {
+  padding: 1rem;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 0 0 2rem 2rem;
   width: 100%;
@@ -99,7 +100,7 @@ html {
   align-items: center;
 }
 
-.flexbox-container {
+/* .flexbox-container {
   padding: 1%;
   background-color: rgb(255, 255, 255);
   border: 2px solid black;
@@ -111,7 +112,7 @@ html {
   gap: 10px;
   width: 100%;
   max-width: 100%;
-}
+} */
 .custom-image-1 {
   border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
   /* width: 15vh; */
