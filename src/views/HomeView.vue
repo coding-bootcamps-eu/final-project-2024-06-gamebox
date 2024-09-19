@@ -1,7 +1,6 @@
 <template>
   <NavBar />
   <body>
-    
     <div class="container">
       <div class="flexbox" v-for="item in gamesStore.games" :key="item.id">
         <img
@@ -9,9 +8,9 @@
           alt="Play Game"
           class="play-button"
           @click="$router.push('/singleGame/' + item.id)"
-        >
-        
-        </img>
+        />
+
+        <!-- </img> -->
       </div>
     </div>
   </body>
@@ -50,27 +49,23 @@ html {
   width: 100%;
   height: 100%;
   background-color: rgb(243, 238, 234);
- 
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
-
 .flexbox {
-  border: 2px ;
+  border: 2px;
   width: 30%;
   height: 200px;
- 
+
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
   font-weight: bold;
   border-radius: 10px;
-  
-
 }
 
 .play-button {
@@ -82,6 +77,4 @@ html {
   width: 100%;
   height: 100%;
 }
-
-
 </style>
