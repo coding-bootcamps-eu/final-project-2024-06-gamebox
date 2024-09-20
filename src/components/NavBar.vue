@@ -30,18 +30,21 @@ export default {
 
 <style scoped>
 nav {
+  border-radius: 2rem 2rem 0 0;
+  border: 3px solid rgb(0, 0, 0);
   display: flex;
   justify-content: space-around;
   padding: 1rem;
-  background-color: lightgray;
+  background-color: rgb(36, 34, 34);
 }
 
 .nav-link {
   text-decoration: none;
-  color: #333;
+  color: #fa6400;
   font-weight: bold;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border: 5px solid rgb(224, 223, 223);
+  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
