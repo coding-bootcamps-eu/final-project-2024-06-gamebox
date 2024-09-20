@@ -165,7 +165,7 @@ menu {
 }
 
 form {
-  margin-top: 1rem;
+  margin-top: 13rem;
   margin-left: 1rem;
   margin-right: 1rem;
 }
