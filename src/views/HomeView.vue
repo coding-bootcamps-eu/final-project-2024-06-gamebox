@@ -3,10 +3,21 @@
   <body>
     <div class="container">
       <div class="flexbox" v-for="item in gamesStore.games" :key="item.id">
+
+   <!--      <img
+          :src="item.imagepath"
+          alt="Play Game"
+          class="play-button"
+          @click="$router.push('/singleGame/' + item.id)"
+        /> -->
+
+        <!-- </img> -->
+
         <button class="play-button" @click="$router.push('/singleGame/' + item.id)">
           <img :src="item.imagepath" alt="Play Game" class="game-image" />
           <span class="game-name">{{ item.gamename }}</span>
         </button>
+
       </div>
       <router-link to="@/stores/HighScores.js" class="flexbox-highscores">Highscores</router-link>
     </div>
@@ -47,6 +58,35 @@ html {
   height: 100%;
   overflow-x: auto;
 }
+
+ <!--
+.container {
+  padding: 1rem;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 0 0 2rem 2rem;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(243, 238, 234);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexbox {
+  border: 2px;
+  width: 30%;
+  height: 200px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 10px;
+  }
+  
+-->
 
 .flexbox-highscores {
   display: flex;
@@ -105,5 +145,9 @@ html {
   color: white;
   padding: 5px;
   text-align: center;
+
 }
+
+
+
 </style>

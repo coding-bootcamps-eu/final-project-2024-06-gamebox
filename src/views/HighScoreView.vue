@@ -1,33 +1,71 @@
+<!-- src/components/UserList.vue -->
+
 <template>
   <NavBar />
-  <body>
-    <div class="container">
-      <ul class="highscoreContentList">
-        <li v-for="singleGame in games" :key="singleGame.id">
-          {{ singleGame.id }}
-          {{ singleGame.text }} Best Player: {{ singleGame.bestPlayer }} HIGHSCORE:
-          {{ singleGame.highscore }}
-        </li>
-      </ul>
-    </div>
-  </body>
+
+  <div class="highscoreContentList">
+    <div v-if="loading">Loading users...</div>
+    <div v-else-if="error">{{ error }}</div>
+    <ul v-else>
+      <!-- <li class="list-element" v-for="user in users" :key="user.id">
+        {{ user.id }}{{ user.username }} -->
+      <li class="list-element" v-for="game in gamesEmbedHighscore" :key="game.id">
+        {{ game.id }}{{ game.title }}
+        <ul>
+          <li v-for="highScore in game.highscores" :key="highScore.id">
+            {{ highScore.score }}
+          </li>
+        </ul>
+      </li>
+      <!-- <li v-for="element in users.highscores" :key="element.id">
+        {{ element.id }} {{ element.gameID }} {{ element.userID }} {{ element.score }}
+      </li> -->
+    </ul>
+  </div>
 </template>
 
 <script>
+import apiClient from '@/api/index.js'
 import NavBar from '@/components/NavBar.vue'
 
 export default {
-  components: {
-    NavBar
-  },
+  components: { NavBar },
+  name: 'test-data',
 
   data() {
     return {
-      games: [
-        { id: 1, text: 'Hangman', highscore: '12345', bestPlayer: 'Volker' },
-        { id: 2, text: 'Rock, Paper, Scissors', highscore: '5555', bestPlayer: 'Marco' },
-        { id: 3, text: 'Snake', highscore: '9876', bestPlayer: 'Volker' }
-      ]
+      users: [],
+      gamesEmbedHighscore: [],
+      loading: true,
+      error: null
+    }
+  },
+  mounted() {
+    this.fetchUsers()
+    this.fetchGamesEmbedHighscore()
+  },
+  methods: {
+    async fetchUsers() {
+      try {
+        this.loading = true
+        this.users = await apiClient.getUsers()
+      } catch (error) {
+        console.error('Error fetching users:', error)
+        this.error = 'Failed to load users. Please try again later.'
+      } finally {
+        this.loading = false
+      }
+    },
+    async fetchGamesEmbedHighscore() {
+      try {
+        this.loading = true
+        this.gamesEmbedHighscore = await apiClient.getGamesEmbedHighscores()
+      } catch (error) {
+        console.error('Error fetching users:', error)
+        this.error = 'Failed to load users. Please try again later.'
+      } finally {
+        this.loading = false
+      }
     }
   }
 }
@@ -37,9 +75,10 @@ export default {
 .highscoreContentList {
   background-color: rgb(255, 174, 0);
   border: 5px solid black; /* Corrected border property */
-  width: 110vh;
+  /* width: 110vh; */
+  width: 100%;
   height: 100%;
-  border-radius: 0rem 0rem 2rem 0rem;
+  border-radius: 0rem 0rem 2rem 2rem;
 }
 
 body,
@@ -51,9 +90,9 @@ html {
   height: 100%;
 }
 
-.container {
+.list-element {
   border: 2px solid black;
-  border-radius: 0 0 2rem 2rem;
+  border-radius: 1rem;
   width: 100%; /* Corrected width */
   height: 90%;
   background-color: rgb(209, 204, 204);
